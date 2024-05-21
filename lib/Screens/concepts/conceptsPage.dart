@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learning_app/api/ApiServic.dart';
-import 'package:flutter_learning_app/widgets/CustomAppBar.dart';
 
+import '../../api/ApiServic.dart';
 import '../../models/concpt.dart';
+import '../../widgets/CustomAppBar.dart';
 
-class ConceptsPage extends StatelessWidget {
+class ConceptsPage extends StatefulWidget {
+  const ConceptsPage({super.key});
+
+  @override
+  State<ConceptsPage> createState() => _ConceptsPageState();
+}
+
+class _ConceptsPageState extends State<ConceptsPage> {
+  late Future<Map<String, List<Concept>>> futureConcept;
+  @override
+  void initState() {
+    super.initState();
+    futureConcept = ApiService().fetchAndGroupConcepts();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -12,7 +26,7 @@ class ConceptsPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(title: 'Learn more'),
       body: FutureBuilder<Map<String, List<Concept>>>(
-        future: ApiService().fetchAndGroupConcepts(),
+        future: futureConcept,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -31,7 +45,7 @@ class ConceptsPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        'Learn About ${topicName.capitalize()}',
+                        '${topicName.capitalize()}',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -44,7 +58,7 @@ class ConceptsPage extends StatelessWidget {
                         crossAxisCount: screenWidth < 576
                             ? 2
                             : 3, // Adjust grid based on screen width
-                        childAspectRatio: screenWidth < 576 ? 0.80 : 0.9,
+                        childAspectRatio: screenWidth < 576 ? 1.3 : 0.9,
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 20,
                       ),
@@ -105,8 +119,8 @@ class ConceptCard extends StatelessWidget {
       onTap: () => _showDetails(context),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[50],
-          borderRadius: BorderRadius.circular(15),
+          color: Colors.white70,
+          borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -115,21 +129,25 @@ class ConceptCard extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.code_rounded, size: 40, color: Colors.blueGrey),
             SizedBox(height: 10),
             Text(
               concept.title!,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 10),
             TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
               onPressed: () => _showDetails(context),
-              child: Text("Read More"),
+              child: Text(
+                "Read More",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

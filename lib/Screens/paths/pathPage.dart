@@ -45,44 +45,73 @@ class _PathPageState extends State<PathPage> {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (snapshot.hasData) {
               final path = snapshot.data!;
-              return Expanded(
-                child: PageView(
-                  children: [
-                    _buildCard(
-                        title: 'Description',
-                        content: path.description!,
-                        icon: Icons.label_important_outline),
-                    _buildCard(
-                      title: 'Roles',
-                      content: path.roles!,
-                      icon: Icons.join_inner_sharp,
+              return Column(
+                children: [
+                  SizedBox(
+                    height: 60,
+                  ),
+                  const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.swipe_left,
+                          color: Colors.blueGrey,
+                          size: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 15.0, right: 15),
+                          child: Text(
+                            "Swipe To Read More",
+                            style:
+                                TextStyle(color: Colors.black87, fontSize: 22),
+                          ),
+                        ),
+                        Icon(
+                          Icons.swipe_right,
+                          color: Colors.blueGrey,
+                          size: 30,
+                        ),
+                      ]),
+                  Expanded(
+                    child: PageView(
+                      children: [
+                        _buildCard(
+                            title: 'Description',
+                            content: path.description!,
+                            icon: Icons.label_important_outline),
+                        _buildCard(
+                          title: 'Roles',
+                          content: path.roles!,
+                          icon: Icons.join_inner_sharp,
+                        ),
+                        _buildCard(
+                          title: 'Challenges',
+                          content: path.challenges!,
+                          icon: FontAwesomeIcons.faceAngry,
+                        ),
+                        _buildCard(
+                          title: 'Interests',
+                          content: path.interests!,
+                          icon: FontAwesomeIcons.faceLaughBeam,
+                        ),
+                        _buildCard(
+                          title: 'Frameworks',
+                          content: path.frameworks!,
+                          icon: FontAwesomeIcons.laptopCode,
+                        ),
+                        _buildCard(
+                            title: 'Steps to Learn',
+                            content: path.stepsToLearn!,
+                            icon: Icons.stacked_bar_chart),
+                        _buildCard(
+                          title: 'Sources',
+                          content: path.sources!,
+                          icon: Icons.link_outlined,
+                        ),
+                      ],
                     ),
-                    _buildCard(
-                      title: 'Challenges',
-                      content: path.challenges!,
-                      icon: FontAwesomeIcons.faceAngry,
-                    ),
-                    _buildCard(
-                      title: 'Interests',
-                      content: path.interests!,
-                      icon: FontAwesomeIcons.faceLaughBeam,
-                    ),
-                    _buildCard(
-                      title: 'Frameworks',
-                      content: path.frameworks!,
-                      icon: FontAwesomeIcons.laptopCode,
-                    ),
-                    _buildCard(
-                        title: 'Steps to Learn',
-                        content: path.stepsToLearn!,
-                        icon: Icons.stacked_bar_chart),
-                    _buildCard(
-                      title: 'Sources',
-                      content: path.sources!,
-                      icon: Icons.link_outlined,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               );
             } else {
               return const Center(child: Text('No data available'));

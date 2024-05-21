@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount:
                 screenWidth < 600 ? 2 : 3, // Adjust grid based on screen width
-            childAspectRatio: screenWidth < 600 ? 0.78 : 0.9,
+            childAspectRatio: screenWidth < 600 ? 0.75 : 0.90,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
           ),
@@ -113,20 +113,25 @@ class Body extends StatelessWidget {
                     Flexible(
                       child: Image.asset(
                         section.imageSource,
-                        height: screenHeight *
-                            0.1, // Adjust image height relative to screen height
+                        height: screenHeight * 0.3,
+                        width: screenWidth * 2,
+
+                        // Adjust image height relative to screen height
                       ),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      section.sectionTilte,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.blueGrey[300],
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Text(
+                        section.sectionTilte,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.blueGrey[300],
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                   ],
