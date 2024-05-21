@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import '../../../components/already_have_an_account_acheck.dart';
+import '../../../constants.dart';
+import '../../../method/validtador.dart';
+import '../../../providers/auth.dart';
+import '../../Signup/signup_screen.dart';
+
+class LoginForm extends StatelessWidget {
+  LoginForm({
+    Key? key,
+  }) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+  Future submit(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      print(" password : ${_password.text}  email: ${_email.text}");
+      await Provider.of<Auth>(context, listen: false)
+          .login(email: _email.text, password: _password.text);
+      if (Provider.of<Auth>(context, listen: false).errorMessge != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content:
+                Text(Provider.of<Auth>(context, listen: false).errorMessge!),
+            backgroundColor: Colors.red,
+          ),
+        );
+        Provider.of<Auth>(context, listen: false).resetErrorMessage();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("successful login!"),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("login faild ): "),
+          backgroundColor: Color.fromARGB(255, 255, 0, 0),
+        ),
+      );
+    }
+  }
+
+  void dispose() {
+    _password.dispose();
+    _email.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _email,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            cursorColor: kPrimaryColor,
+            onSaved: (email) => _email,
+            validator: Validte.validateEmail,
+            decoration: const InputDecoration(
+              hintText: "Your email",
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Icon(Icons.email),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: TextFormField(
+              controller: _password,
+              validator: Validte.validatePassword,
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              cursorColor: kPrimaryColor,
+              decoration: const InputDecoration(
+                hintText: "Your password",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Icon(Icons.lock),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          ElevatedButton(
+            onPressed: () {
+              submit(context);
+            },
+            child: Text(
+              "Login".toUpperCase(),
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          AlreadyHaveAnAccountCheck(
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SignUpScreen();
+                  },
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
