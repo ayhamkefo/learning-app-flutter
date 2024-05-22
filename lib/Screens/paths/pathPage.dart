@@ -61,7 +61,7 @@ class _PathPageState extends State<PathPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 15.0, right: 15),
                           child: Text(
-                            "Swipe To Read More",
+                            "Swipe to read more",
                             style:
                                 TextStyle(color: Colors.black87, fontSize: 22),
                           ),

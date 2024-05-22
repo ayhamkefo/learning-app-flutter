@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/CustomAppBar.dart';
 import '../../widgets/bottomNavBar.dart';
 import '../concepts/conceptsPage.dart';
+import '../interview_questions/interviewQustionPage.dart';
 import '../paths/PathsPage.dart';
 import 'homePageSections.dart';
 
@@ -89,6 +90,13 @@ class Body extends StatelessWidget {
                       builder: (context) => ConceptsPage(),
                     ),
                   );
+                } else if (index == 2) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => InterviewQuestionsPage(),
+                    ),
+                  );
                 }
               },
               child: Container(
@@ -115,8 +123,6 @@ class Body extends StatelessWidget {
                         section.imageSource,
                         height: screenHeight * 0.3,
                         width: screenWidth * 2,
-
-                        // Adjust image height relative to screen height
                       ),
                     ),
                     const SizedBox(

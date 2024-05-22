@@ -114,12 +114,14 @@ class _PathsPageState extends State<PathsPage> {
 Icon chooseIcon(String title) {
   switch (title.toLowerCase()) {
     case 'backend web development':
+    case 'backend':
       return const Icon(
         FontAwesomeIcons.laravel,
         color: Colors.red,
         size: 30,
       );
     case 'frontend web development':
+    case 'frontend':
       return const Icon(
         FontAwesomeIcons.react,
         color: Colors.blue,
@@ -133,6 +135,7 @@ Icon chooseIcon(String title) {
         size: 30,
       );
     case 'moblie app development':
+    case 'moblie':
       return const Icon(
         FontAwesomeIcons.android,
         color: Colors.green,

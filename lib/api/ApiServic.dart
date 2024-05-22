@@ -4,15 +4,14 @@ import 'package:http/http.dart' as http;
 
 import '../method/sheradPrefefrancesManger.dart';
 import '../models/concpt.dart';
+import '../models/interviewQuestion.dart';
 import '../models/paths.dart';
 
 class ApiService {
   static const String baseUrl = 'http://127.0.0.1:8000/api';
 
   Future<List<ProgrammingPath>> fetchPaths() async {
-    final prefs = await SharedPreferencesManager.getInstance();
-    final token = prefs.getString('auth') ?? '';
-
+    final token = await getToken();
     final response = await http.get(
       Uri.parse('$baseUrl/student/paths'),
       headers: {
@@ -30,8 +29,7 @@ class ApiService {
   }
 
   Future<ProgrammingPath> fetchPath(int id) async {
-    final prefs = await SharedPreferencesManager.getInstance();
-    final token = prefs.getString('auth') ?? '';
+    final token = await getToken();
     final response = await http.get(
       Uri.parse('$baseUrl/student/paths/$id'),
       headers: {
@@ -48,7 +46,7 @@ class ApiService {
   }
 
   Future<Map<String, List<Concept>>> fetchAndGroupConcepts() async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/student/concepts');
+    var url = Uri.parse('$baseUrl/student/concepts');
     final prefs = await SharedPreferencesManager.getInstance();
     final token = prefs.getString('auth') ?? '';
     final response =
@@ -69,5 +67,32 @@ class ApiService {
     } else {
       throw Exception('Failed to load concpts');
     }
+  }
+
+  Future<Map<String, List<InterviewQuestion>>> fetchQuestions() async {
+    final token = await getToken();
+    var url = Uri.parse('$baseUrl/student/questions');
+    final response =
+        await http.get(url, headers: {'Authorization': 'Bearer $token'});
+    if (response.statusCode == 200) {
+      List<dynamic> body = jsonDecode(response.body)['questions'];
+      List<InterviewQuestion> questions =
+          body.map((dynamic item) => InterviewQuestion.fromJson(item)).toList();
+      Map<String, List<InterviewQuestion>> grouped = {};
+      for (var question in questions) {
+        if (!grouped.containsKey(question.topicName)) {
+          grouped[question.topicName] = [];
+        }
+        grouped[question.topicName]!.add(question);
+      }
+      return grouped;
+    } else {
+      throw Exception('Failed to load questions');
+    }
+  }
+
+  Future getToken() async {
+    final prefs = await SharedPreferencesManager.getInstance();
+    return prefs.getString('auth') ?? '';
   }
 }
