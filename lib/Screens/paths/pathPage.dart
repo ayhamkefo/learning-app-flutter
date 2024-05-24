@@ -31,7 +31,10 @@ class _PathPageState extends State<PathPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
+            colors: [
+              Color.fromARGB(226, 104, 129, 175),
+              Color.fromARGB(255, 187, 187, 187),
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,7 +50,7 @@ class _PathPageState extends State<PathPage> {
               final path = snapshot.data!;
               return Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
                   const Row(
@@ -55,20 +58,15 @@ class _PathPageState extends State<PathPage> {
                       children: [
                         Icon(
                           Icons.swipe_left,
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           size: 30,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15.0, right: 15),
-                          child: Text(
-                            "Swipe to read more",
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 22),
-                          ),
+                        SizedBox(
+                          width: 150,
                         ),
                         Icon(
                           Icons.swipe_right,
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           size: 30,
                         ),
                       ]),
@@ -133,7 +131,7 @@ class _PathPageState extends State<PathPage> {
     return Center(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white70,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -143,7 +141,12 @@ class _PathPageState extends State<PathPage> {
               offset: const Offset(2, 2),
             ),
           ],
-        ),
+          // gradient: const LinearGradient(
+          //   colors: [
+          //     Color(0xff9fa8da), // A darker shade of light blue
+          //     Color(0xffbdbdbd),
+          //   ],
+        ), // )),
         margin: const EdgeInsets.all(20),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -153,14 +156,14 @@ class _PathPageState extends State<PathPage> {
             children: [
               Row(
                 children: [
-                  Icon(icon, color: const Color(0xff8A56AC), size: 27),
+                  Icon(icon, color: Colors.black54, size: 27),
                   const SizedBox(width: 15),
                   Expanded(
                     child: Text(
                       title,
                       style: const TextStyle(
                         fontSize: 20,
-                        color: Color(0xff8A56AC),
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -175,8 +178,8 @@ class _PathPageState extends State<PathPage> {
                       content,
                       style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500),
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                 )
@@ -185,8 +188,8 @@ class _PathPageState extends State<PathPage> {
                   content,
                   style: const TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500),
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 ),
             ],
           ),

@@ -29,7 +29,10 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
+              colors: [
+                Color.fromARGB(226, 104, 129, 175),
+                Color.fromARGB(255, 187, 187, 187),
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -134,7 +137,7 @@ class Body extends StatelessWidget {
                         section.sectionTilte,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.blueGrey[300],
+                          color: Colors.blueGrey[700],
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
                         ),

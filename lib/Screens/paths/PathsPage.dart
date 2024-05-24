@@ -32,7 +32,10 @@ class _PathsPageState extends State<PathsPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
+            colors: [
+              Color.fromARGB(226, 104, 129, 175),
+              Color.fromARGB(255, 187, 187, 187),
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -69,7 +72,7 @@ class _PathsPageState extends State<PathsPage> {
                           height: MediaQuery.of(context).size.height * 0.15,
                           padding: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.white70,
                             borderRadius: BorderRadius.circular(20.0),
                             boxShadow: const [
                               BoxShadow(
@@ -86,10 +89,10 @@ class _PathsPageState extends State<PathsPage> {
                               Expanded(
                                 child: Text(
                                   path.title!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.blueGrey[400],
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -131,7 +134,7 @@ Icon chooseIcon(String title) {
     case 'ai':
       return const Icon(
         FontAwesomeIcons.robot,
-        color: Colors.pinkAccent,
+        color: Colors.orangeAccent,
         size: 30,
       );
     case 'moblie app development':

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning_app/Screens/interview_questions/quizzPage.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../api/ApiServic.dart';
 import '../../models/interviewQuestion.dart';
 import '../../widgets/CustomAppBar.dart';
@@ -29,7 +26,10 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
+            colors: [
+              Color.fromARGB(226, 104, 129, 175),
+              Color.fromARGB(255, 187, 187, 187),
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -52,7 +52,7 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
                     child: Container(
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(225, 255, 255, 255),
                         borderRadius: BorderRadius.circular(25.0),
                         boxShadow: const [
                           BoxShadow(
@@ -79,17 +79,17 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
                             children: [
                               Row(
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.menu_book_outlined,
                                     size: 14,
-                                    color: Colors.grey,
+                                    color: Colors.grey[600],
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
                                     "${questions.length} Questions",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 12,
-                                      color: Colors.grey,
+                                      color: Colors.grey[600],
                                     ),
                                   ),
                                 ],
@@ -97,17 +97,17 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
                               const SizedBox(height: 4),
                               Row(
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.alarm,
                                     size: 14,
-                                    color: Colors.grey,
+                                    color: Colors.grey[600],
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
                                     "${(questions.length * 1.5).toStringAsFixed(1)} min",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 12,
-                                      color: Colors.grey,
+                                      color: Colors.grey[600],
                                     ),
                                   ),
                                 ],
@@ -163,9 +163,8 @@ void showTestExplanationBottomSheet(
           builder: (context, scrollController) {
             return Container(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                padding: const EdgeInsets.all(8),
                 children: [
                   const Text(
                     'Brief explanation about this test',
@@ -176,7 +175,7 @@ void showTestExplanationBottomSheet(
                   ),
                   ListTile(
                     leading: const CircleAvatar(
-                      child: Icon(Icons.menu_book, color: Colors.deepPurple),
+                      child: Icon(Icons.menu_book, color: Color(0xFF252c4a)),
                     ),
                     title: Text(
                       "${questions.length} Qustions",
@@ -184,14 +183,14 @@ void showTestExplanationBottomSheet(
                     ),
                     subtitle: const Text(
                       '10 points for each question',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black87),
                     ),
                   ),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(
                         Icons.alarm_outlined,
-                        color: Colors.deepPurple,
+                        color: Color(0xFF252c4a),
                       ),
                     ),
                     title: const Text(
@@ -200,13 +199,13 @@ void showTestExplanationBottomSheet(
                     ),
                     subtitle: Text(
                       '${(questions.length * 1.5).toStringAsFixed(1)} min',
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.black87),
                     ),
                   ),
                   ListTile(
                     leading: const CircleAvatar(
                       child: Icon(Icons.star_border_outlined,
-                          color: Colors.deepPurple),
+                          color: Color(0xFF252c4a)),
                     ),
                     title: Text(
                       'Win ${questions.length} Stars',
@@ -214,35 +213,31 @@ void showTestExplanationBottomSheet(
                     ),
                     subtitle: const Text(
                       'Answer all the questions correctly',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  const Spacer(), // Pushes the button to the bottom
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
-                        //padding: EdgeInsets.symmetric(vertical: 5.0),
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  QuizzScreen(questions: questions),
-                            ));
-                        // Start the quiz logic here
-                      },
-                      child: const Text(
-                        'Start Quiz',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      ),
+                      style: TextStyle(color: Colors.black87),
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 40,
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color(0xFF252c4a),
+                      //padding: EdgeInsets.symmetric(vertical: 5.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                QuizzScreen(questions: questions),
+                          ));
+                      // Start the quiz logic here
+                    },
+                    child: const Text(
+                      'Start Quiz',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ],
               ),

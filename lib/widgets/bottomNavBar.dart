@@ -46,14 +46,14 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         tabIconColor: Colors.blueGrey,
         tabIconSize: 28.0,
         tabIconSelectedSize: 26.0,
-        tabSelectedColor: const Color(0xff8A56AC),
+        tabSelectedColor: const Color(0xFF252c4a),
         tabIconSelectedColor: Colors.white,
         tabBarColor: Colors.white,
         tabSize: 50,
         tabBarHeight: 55,
         textStyle: const TextStyle(
           fontSize: 12,
-          color: Color(0xff8A56AC),
+          color: Color(0xFF252c4a),
           fontWeight: FontWeight.w500,
         ),
         onTabItemSelected: (index) {

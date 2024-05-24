@@ -28,7 +28,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xff8A56AC), Color(0xff6849ef)],
+            colors: [
+              Color.fromARGB(237, 37, 44, 74),
+              Color.fromARGB(218, 71, 89, 167),
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
