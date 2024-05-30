@@ -14,7 +14,8 @@ class Auth extends ChangeNotifier {
   User? get user => _user;
   bool get authenticated => _authenticated;
   String? get errorMessge => _errorMessage;
-
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
   void resetErrorMessage() {
     _errorMessage = null;
   }
@@ -72,6 +73,8 @@ class Auth extends ChangeNotifier {
   }
 
   Future logout() async {
+    _isLoading = true;
+    notifyListeners();
     var url = Uri.parse('http://127.0.0.1:8000/api/auth/logout');
     String token = await getToken();
     _authenticated = false;
@@ -79,10 +82,13 @@ class Auth extends ChangeNotifier {
       'Authorization': 'Bearer $token',
     });
     await deleteToken();
+    _isLoading = false;
     notifyListeners();
   }
 
   Future attempt(String? token) async {
+    _isLoading = true;
+    notifyListeners();
     var url = Uri.parse('http://127.0.0.1:8000/api/auth/user');
     try {
       var response =
@@ -91,11 +97,14 @@ class Auth extends ChangeNotifier {
         var data = await converter.jsonDecode(response.body);
         _user = User.fromJson(data);
         _authenticated = true;
+      } else {
+        _authenticated = false;
       }
     } catch (e) {
       log('error log ${e.toString()}');
       _authenticated = false;
     }
+    _isLoading = false;
     notifyListeners();
   }
 

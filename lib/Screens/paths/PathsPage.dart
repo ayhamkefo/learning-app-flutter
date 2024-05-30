@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../api/ApiServic.dart';
 import '../../models/paths.dart';
-import '../../widgets/CustomAppBar.dart';
+import '../../widgets/customAppBar.dart';
 import 'pathPage.dart';
 
 class PathsPage extends StatefulWidget {
@@ -32,10 +31,7 @@ class _PathsPageState extends State<PathsPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(226, 104, 129, 175),
-              Color.fromARGB(255, 187, 187, 187),
-            ],
+            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -68,11 +64,11 @@ class _PathsPageState extends State<PathsPage> {
                                       )));
                         },
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.75,
+                          width: MediaQuery.of(context).size.width * 0.80,
                           height: MediaQuery.of(context).size.height * 0.15,
                           padding: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
-                            color: Colors.white70,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(20.0),
                             boxShadow: const [
                               BoxShadow(
@@ -133,8 +129,8 @@ Icon chooseIcon(String title) {
     case 'artificial intelligence':
     case 'ai':
       return const Icon(
-        FontAwesomeIcons.robot,
-        color: Colors.orangeAccent,
+        FontAwesomeIcons.python,
+        color: Color.fromARGB(255, 196, 220, 57),
         size: 30,
       );
     case 'moblie app development':

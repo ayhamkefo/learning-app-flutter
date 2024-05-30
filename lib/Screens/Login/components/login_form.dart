@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
 import '../../../method/validtador.dart';
 import '../../../providers/auth.dart';
 import '../../Signup/signup_screen.dart';
 
-class LoginForm extends StatelessWidget {
-  LoginForm({
-    Key? key,
-  }) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  Future submit(BuildContext context) async {
+  @override
+  void dispose() {
+    _password.dispose();
+    _email.dispose();
+    super.dispose();
+  }
+
+  Future<void> submit() async {
     if (_formKey.currentState!.validate()) {
-      print(" password : ${_password.text}  email: ${_email.text}");
+      print("password : ${_password.text}  email: ${_email.text}");
       await Provider.of<Auth>(context, listen: false)
           .login(email: _email.text, password: _password.text);
+      if (!mounted) return;
       if (Provider.of<Auth>(context, listen: false).errorMessge != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -41,16 +51,11 @@ class LoginForm extends StatelessWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("login faild ): "),
+          content: Text("login failed ): "),
           backgroundColor: Color.fromARGB(255, 255, 0, 0),
         ),
       );
     }
-  }
-
-  void dispose() {
-    _password.dispose();
-    _email.dispose();
   }
 
   @override
@@ -93,12 +98,8 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           ElevatedButton(
-            onPressed: () {
-              submit(context);
-            },
-            child: Text(
-              "Login".toUpperCase(),
-            ),
+            onPressed: submit,
+            child: Text("Login".toUpperCase()),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(

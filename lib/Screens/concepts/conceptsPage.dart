@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../api/ApiServic.dart';
 import '../../models/concpt.dart';
@@ -50,18 +52,10 @@ class _ConceptsPageState extends State<ConceptsPage> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    GridView.builder(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 16.0),
+                    ListView.builder(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 70, vertical: 10),
                       shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: screenWidth < 576
-                            ? 2
-                            : 3, // Adjust grid based on screen width
-                        childAspectRatio: screenWidth < 576 ? 1.3 : 0.9,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                      ),
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: concepts.length,
                       itemBuilder: (context, index) {
@@ -116,11 +110,11 @@ class ConceptCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _showDetails(context),
       child: Container(
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white70,
-          borderRadius: BorderRadius.circular(25),
+          color: Colors.white,
+          // borderRadius: BorderRadius.circular(25),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -129,29 +123,15 @@ class ConceptCard extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.all(15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 10),
-            Text(
-              concept.title!,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(height: 10),
-            TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-              onPressed: () => _showDetails(context),
-              child: Text(
-                "Read More",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(concept.title!),
         ),
       ),
+      //   child: SvgPicture.asset(
+      //     "assets/icons/api.svg",
+      //   ),
+      // ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'Screens/Welcome/welcome_screen.dart';
 import 'constants.dart';
 
 class AuthPage extends StatelessWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  const AuthPage({super.key});
 
   // This widget is the root of your application.
   @override

@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/CustomAppBar.dart';
+import '../../widgets/customAppBar.dart';
 import '../../widgets/bottomNavBar.dart';
 import '../concepts/conceptsPage.dart';
 import '../interview_questions/interviewQustionPage.dart';
-import '../paths/PathsPage.dart';
+import '../paths/pathsPage.dart';
 import 'homePageSections.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,10 +29,7 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(226, 104, 129, 175),
-                Color.fromARGB(255, 187, 187, 187),
-              ],
+              colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -66,8 +63,7 @@ class Body extends StatelessWidget {
         child: GridView.builder(
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount:
-                screenWidth < 600 ? 2 : 3, // Adjust grid based on screen width
+            crossAxisCount: selectScreenWidth(screenWidth),
             childAspectRatio: screenWidth < 600 ? 0.75 : 0.90,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
@@ -151,5 +147,16 @@ class Body extends StatelessWidget {
         ),
       ),
     ]);
+  }
+
+  int selectScreenWidth(screenWidth) {
+    if (screenWidth <= 280) {
+      return 1;
+    } else if (screenWidth > 280 && screenWidth < 450) {
+      return 2;
+    } else if (screenWidth >= 450 && screenWidth < 900) {
+      return 3;
+    }
+    return 4;
   }
 }

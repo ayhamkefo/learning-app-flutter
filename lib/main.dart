@@ -41,9 +41,11 @@ class _CheckPageState extends State<CheckPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Consumer<Auth>(builder: (context, value, child) {
-          if (value.authenticated) {
-            return HomePage();
+        child: Consumer<Auth>(builder: (context, auth, child) {
+          if (auth.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (auth.authenticated) {
+            return const HomePage();
           }
           return const AuthPage();
         }),

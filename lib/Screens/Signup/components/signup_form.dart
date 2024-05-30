@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
 import '../../../method/validtador.dart';
 import '../../../providers/auth.dart';
 import '../../Login/login_screen.dart';
 
-class SignUpForm extends StatelessWidget {
-  SignUpForm({
-    Key? key,
-  }) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({Key? key}) : super(key: key);
+
+  @override
+  _SignUpFormState createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _confirmPassword = TextEditingController();
 
+  @override
   void dispose() {
     _password.dispose();
     _confirmPassword.dispose();
     _name.dispose();
     _email.dispose();
+    super.dispose();
   }
 
-  Future submit(BuildContext context) async {
+  Future<void> submit() async {
     if (_formKey.currentState!.validate()) {
       print(
           "name: ${_name.text}  password : ${_password.text}  email: ${_email.text}");
       await Provider.of<Auth>(context, listen: false).register(
           email: _email.text, password: _password.text, name: _name.text);
 
+      if (!mounted) return;
       if (Provider.of<Auth>(context, listen: false).errorMessge != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -51,7 +57,7 @@ class SignUpForm extends StatelessWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("SingUP Faild ):"),
+          content: Text("Sign Up Failed ):"),
           backgroundColor: Colors.red,
         ),
       );
@@ -125,7 +131,7 @@ class SignUpForm extends StatelessWidget {
               onSaved: (password) => _confirmPassword,
               validator: (password) {
                 if (password == null || password.isEmpty) {
-                  return 'Pleas Enter The Password';
+                  return 'Please Enter The Password';
                 }
                 if (password.length < 6) {
                   return 'Password Must Be More Than 6 Letters ';
@@ -150,7 +156,7 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () {
-              submit(context);
+              submit();
             },
             child: Text("Sign Up".toUpperCase()),
           ),

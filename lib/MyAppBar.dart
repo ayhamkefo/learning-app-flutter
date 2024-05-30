@@ -9,12 +9,10 @@ class MyAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      height: 100,
+      height: 200,
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
           bottomLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),
         ),
@@ -23,14 +21,16 @@ class MyAppBar extends StatelessWidget {
           end: Alignment.bottomRight,
           stops: [0.1, 0.5],
           colors: [
+            // Color.fromARGB(237, 37, 44, 74),
+            // Color.fromARGB(218, 71, 89, 167),
             Color(0xff886ff2),
             Color(0xff6849ef),
           ],
         ),
       ),
-      child: Text(
+      child: const Text(
         "Welcome To \n Home Page",
-        style: Theme.of(context).textTheme.titleMedium,
+        style: TextStyle(color: Colors.white),
       ),
     );
   }

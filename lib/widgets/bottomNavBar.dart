@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
 import '../Screens/home/homePage.dart';
 import '../profilePage.dart';
-import '../settingPage.dart';
+import '../Screens/settings/setting_page.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   final String select;
@@ -30,7 +30,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             offset: Offset(0, -2),
           ),
         ],
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(15),
           topRight: Radius.circular(15),
         ),

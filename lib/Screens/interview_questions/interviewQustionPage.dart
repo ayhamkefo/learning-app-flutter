@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learning_app/Screens/interview_questions/quizzPage.dart';
 import '../../api/ApiServic.dart';
 import '../../models/interviewQuestion.dart';
-import '../../widgets/CustomAppBar.dart';
-import '../paths/PathsPage.dart';
+import '../../widgets/customAppBar.dart';
+import '../paths/pathsPage.dart';
 
 class InterviewQuestionsPage extends StatefulWidget {
   @override
@@ -26,10 +26,7 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(226, 104, 129, 175),
-              Color.fromARGB(255, 187, 187, 187),
-            ],
+            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -52,7 +49,7 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
                     child: Container(
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(225, 255, 255, 255),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(25.0),
                         boxShadow: const [
                           BoxShadow(
@@ -62,80 +59,9 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
                           ),
                         ],
                       ),
-                      child: ListTile(
-                        leading: chooseIcon(topicName),
-                        title: Text(
-                          topicName,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.menu_book_outlined,
-                                    size: 14,
-                                    color: Colors.grey[600],
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    "${questions.length} Questions",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.alarm,
-                                    size: 14,
-                                    color: Colors.grey[600],
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    "${(questions.length * 1.5).toStringAsFixed(1)} min",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        trailing: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              "4.5",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          showTestExplanationBottomSheet(
-                              context, topicName, questions);
-                        },
+                      child: QustionsListTile(
+                        questions: questions,
+                        topicName: topicName,
                       ),
                     ),
                   );
@@ -145,6 +71,91 @@ class _InterviewQuestionsPageState extends State<InterviewQuestionsPage> {
           },
         ),
       ),
+    );
+  }
+}
+
+class QustionsListTile extends StatelessWidget {
+  final List<InterviewQuestion> questions;
+  final String topicName;
+  const QustionsListTile(
+      {super.key, required this.questions, required this.topicName});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: chooseIcon(topicName),
+      title: Text(
+        topicName,
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w500,
+          color: Colors.black87,
+        ),
+      ),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.menu_book_outlined,
+                  size: 14,
+                  color: Colors.grey[600],
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  "${questions.length} Questions",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(
+                  Icons.alarm,
+                  size: 14,
+                  color: Colors.grey[600],
+                ),
+                const SizedBox(width: 5),
+                Text(
+                  "${(questions.length * 1.5).toStringAsFixed(1)} min",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      trailing: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          SizedBox(height: 4),
+          Text(
+            "4.5",
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
+          ),
+        ],
+      ),
+      onTap: () {
+        showTestExplanationBottomSheet(context, topicName, questions);
+      },
     );
   }
 }

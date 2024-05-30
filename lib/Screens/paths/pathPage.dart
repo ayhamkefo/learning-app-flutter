@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learning_app/models/paths.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../api/ApiServic.dart';
-import '../../widgets/CustomAppBar.dart';
+import '../../widgets/customAppBar.dart';
 
 class PathPage extends StatefulWidget {
   final int pathId;
@@ -31,10 +31,7 @@ class _PathPageState extends State<PathPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(226, 104, 129, 175),
-              Color.fromARGB(255, 187, 187, 187),
-            ],
+            colors: [Color(0xffE8EAF6), Color(0xffF5F5F5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -51,14 +48,14 @@ class _PathPageState extends State<PathPage> {
               return Column(
                 children: [
                   const SizedBox(
-                    height: 60,
+                    height: 40,
                   ),
                   const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.swipe_left,
-                          color: Colors.black,
+                          color: Colors.blueGrey,
                           size: 30,
                         ),
                         SizedBox(
@@ -66,47 +63,53 @@ class _PathPageState extends State<PathPage> {
                         ),
                         Icon(
                           Icons.swipe_right,
-                          color: Colors.black,
+                          color: Colors.blueGrey,
                           size: 30,
                         ),
                       ]),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Expanded(
-                    child: PageView(
-                      children: [
-                        _buildCard(
-                            title: 'Description',
-                            content: path.description!,
-                            icon: Icons.label_important_outline),
-                        _buildCard(
-                          title: 'Roles',
-                          content: path.roles!,
-                          icon: Icons.join_inner_sharp,
-                        ),
-                        _buildCard(
-                          title: 'Challenges',
-                          content: path.challenges!,
-                          icon: FontAwesomeIcons.faceAngry,
-                        ),
-                        _buildCard(
-                          title: 'Interests',
-                          content: path.interests!,
-                          icon: FontAwesomeIcons.faceLaughBeam,
-                        ),
-                        _buildCard(
-                          title: 'Frameworks',
-                          content: path.frameworks!,
-                          icon: FontAwesomeIcons.laptopCode,
-                        ),
-                        _buildCard(
-                            title: 'Steps to Learn',
-                            content: path.stepsToLearn!,
-                            icon: Icons.stacked_bar_chart),
-                        _buildCard(
-                          title: 'Sources',
-                          content: path.sources!,
-                          icon: Icons.link_outlined,
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: PageView(
+                        children: [
+                          _buildCard(
+                              title: 'Description',
+                              content: path.description!,
+                              icon: Icons.label_important_outline),
+                          _buildCard(
+                            title: 'Roles',
+                            content: path.roles!,
+                            icon: Icons.join_inner_sharp,
+                          ),
+                          _buildCard(
+                            title: 'Challenges',
+                            content: path.challenges!,
+                            icon: FontAwesomeIcons.faceAngry,
+                          ),
+                          _buildCard(
+                            title: 'Interests',
+                            content: path.interests!,
+                            icon: FontAwesomeIcons.faceLaughBeam,
+                          ),
+                          _buildCard(
+                            title: 'Frameworks',
+                            content: path.frameworks!,
+                            icon: FontAwesomeIcons.laptopCode,
+                          ),
+                          _buildCard(
+                              title: 'Steps to Learn',
+                              content: path.stepsToLearn!,
+                              icon: Icons.stacked_bar_chart),
+                          _buildCard(
+                            title: 'Sources',
+                            content: path.sources!,
+                            icon: Icons.link_outlined,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -124,14 +127,11 @@ class _PathPageState extends State<PathPage> {
       {required String title,
       required String content,
       required IconData icon}) {
-    print(content.length);
-    bool needsExpanded =
-        content.length > 500; // Adjust this threshold based on your needs
-
+    bool needsExpanded = content.length > 500;
     return Center(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -141,12 +141,7 @@ class _PathPageState extends State<PathPage> {
               offset: const Offset(2, 2),
             ),
           ],
-          // gradient: const LinearGradient(
-          //   colors: [
-          //     Color(0xff9fa8da), // A darker shade of light blue
-          //     Color(0xffbdbdbd),
-          //   ],
-        ), // )),
+        ),
         margin: const EdgeInsets.all(20),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -156,7 +151,7 @@ class _PathPageState extends State<PathPage> {
             children: [
               Row(
                 children: [
-                  Icon(icon, color: Colors.black54, size: 27),
+                  Icon(icon, color: Color.fromARGB(237, 37, 44, 74), size: 27),
                   const SizedBox(width: 15),
                   Expanded(
                     child: Text(
