@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learning_app/Screens/interview_questions/quizzPage.dart';
+import 'package:flutter_learning_app/Screens/interview_questions/quizz_page.dart';
 import '../../api/ApiServic.dart';
 import '../../models/interviewQuestion.dart';
-import '../../widgets/customAppBar.dart';
-import '../paths/pathsPage.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../paths/paths_page.dart';
 
 class InterviewQuestionsPage extends StatefulWidget {
+  const InterviewQuestionsPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _InterviewQuestionsPageState createState() => _InterviewQuestionsPageState();
 }
 

@@ -1,12 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/customAppBar.dart';
-import '../../widgets/bottomNavBar.dart';
-import '../concepts/conceptsPage.dart';
-import '../interview_questions/interviewQustionPage.dart';
-import '../paths/pathsPage.dart';
-import 'homePageSections.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../../widgets/bottom_nav_bar.dart';
+import '../concepts/concepts_page.dart';
+import '../interview_questions/interview_qustion_page.dart';
+import '../paths/paths_page.dart';
+import 'home_page_sections.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -86,14 +85,14 @@ class Body extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ConceptsPage(),
+                      builder: (context) => const ConceptsPage(),
                     ),
                   );
                 } else if (index == 2) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => InterviewQuestionsPage(),
+                      builder: (context) => const InterviewQuestionsPage(),
                     ),
                   );
                 }
@@ -107,7 +106,7 @@ class Body extends StatelessWidget {
                       color: Colors.black.withOpacity(0.1),
                       blurRadius: 8.0,
                       spreadRadius: 2.0,
-                      offset: Offset(2, 2),
+                      offset: const Offset(2, 2),
                     ),
                   ],
                 ),

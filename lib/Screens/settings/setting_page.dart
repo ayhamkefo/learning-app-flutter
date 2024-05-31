@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/auth.dart';
-import '../../widgets/bottomNavBar.dart';
+import '../../widgets/bottom_nav_bar.dart';
 import 'components/big_user_card.dart';
 import 'components/icon_style.dart';
 import 'components/settings_group.dart';
 import 'components/settings_item.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
   Future lgout(BuildContext context) async {
     await Provider.of<Auth>(context, listen: false).logout();
   }
@@ -97,7 +97,7 @@ class Settings extends StatelessWidget {
                           const Center(child: CircularProgressIndicator());
                         }
                       },
-                    ).show();
+                    );
                   },
                   icons: Icons.exit_to_app_rounded,
                   title: "Sign Out",

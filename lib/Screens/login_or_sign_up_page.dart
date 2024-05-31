@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'Screens/Welcome/welcome_screen.dart';
-import 'constants.dart';
+import 'Welcome/welcome_screen.dart';
+import '../constants.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class LoginOrSignUpPage extends StatelessWidget {
+  const LoginOrSignUpPage({super.key});
 
   // This widget is the root of your application.
   @override

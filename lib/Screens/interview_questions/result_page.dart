@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../home/homePage.dart';
+import '../home/home_page.dart';
 
 // ignore: must_be_immutable
 class ResultScreen extends StatefulWidget {
   int score;
-  ResultScreen(this.score, {Key? key}) : super(key: key);
+  ResultScreen(this.score, {super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ResultScreenState createState() => _ResultScreenState();
 }
 

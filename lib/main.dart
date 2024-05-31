@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'AuthPage.dart';
-import 'Screens/home/homePage.dart';
+import 'Screens/login_or_sign_up_page.dart';
+
+import 'Screens/home/home_page.dart';
 import 'method/sheradPrefefrancesManger.dart';
 import 'providers/auth.dart';
 
@@ -47,7 +48,7 @@ class _CheckPageState extends State<CheckPage> {
           } else if (auth.authenticated) {
             return const HomePage();
           }
-          return const AuthPage();
+          return const LoginOrSignUpPage();
         }),
       ),
     );

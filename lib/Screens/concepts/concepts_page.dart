@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../api/ApiServic.dart';
 import '../../models/concpt.dart';
-import '../../widgets/CustomAppBar.dart';
+import '../../widgets/custom_app_bar.dart';
 
 class ConceptsPage extends StatefulWidget {
   const ConceptsPage({super.key});
@@ -31,11 +29,11 @@ class _ConceptsPageState extends State<ConceptsPage> {
         future: futureConcept,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No concepts found'));
+            return const Center(child: Text('No concepts found'));
           } else {
             return ListView(
               children: snapshot.data!.entries.map((entry) {
@@ -47,14 +45,14 @@ class _ConceptsPageState extends State<ConceptsPage> {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        '${topicName.capitalize()}',
-                        style: TextStyle(
+                        topicName.capitalize(),
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                     ListView.builder(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 70, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 70, vertical: 10),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: concepts.length,
@@ -62,7 +60,7 @@ class _ConceptsPageState extends State<ConceptsPage> {
                         return ConceptCard(concept: concepts[index]);
                       },
                     ),
-                    SizedBox(height: 20), // Add some space between groups
+                    const SizedBox(height: 20),
                   ],
                 );
               }).toList(),
@@ -77,7 +75,7 @@ class _ConceptsPageState extends State<ConceptsPage> {
 class ConceptCard extends StatelessWidget {
   final Concept concept;
 
-  ConceptCard({required this.concept});
+  const ConceptCard({super.key, required this.concept});
 
   void _showDetails(BuildContext context) {
     showDialog(
@@ -90,13 +88,13 @@ class ConceptCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text("Explanation: ${concept.explanation!}"),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text("Sources: ${concept.sources!}"),
             ],
           ),
           actions: [
             TextButton(
-              child: Text("Close"),
+              child: const Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -111,7 +109,7 @@ class ConceptCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
           // borderRadius: BorderRadius.circular(25),
@@ -138,8 +136,6 @@ class ConceptCard extends StatelessWidget {
 
 extension StringExtension on String {
   String capitalize() {
-    return this.length > 0
-        ? '${this[0].toUpperCase()}${this.substring(1)}'
-        : '';
+    return length > 0 ? '${this[0].toUpperCase()}${substring(1)}' : '';
   }
 }

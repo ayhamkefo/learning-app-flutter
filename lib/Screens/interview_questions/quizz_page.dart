@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../models/interviewQuestion.dart';
-import 'resultPage.dart';
+import 'result_page.dart';
 
 class QuizzScreen extends StatefulWidget {
   final List<InterviewQuestion> questions;
-  const QuizzScreen({Key? key, required this.questions}) : super(key: key);
+  const QuizzScreen({super.key, required this.questions});
 
   @override
   _QuizzScreenState createState() => _QuizzScreenState();
@@ -54,7 +54,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ListView(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   children: [
                     SizedBox(
                       width: double.infinity,
@@ -78,7 +78,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
                       width: double.infinity,
                       height: widget.questions[index].questionText.length * 2,
                       child: Text(
-                        "${widget.questions[index].questionText}",
+                        widget.questions[index].questionText,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -102,7 +102,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
                                       1
                                   ? Colors.green[600]
                                   : Colors.red[600]
-                              : Color.fromARGB(
+                              : const Color.fromARGB(
                                   223, 37, 44, 74), // : Color(0xFF117eeb),
                           onPressed: !answered
                               ? () {
@@ -156,7 +156,7 @@ class _QuizzScreenState extends State<QuizzScreen> {
                         }
                       },
                       shape: const StadiumBorder(),
-                      fillColor: Color(0xFF252c4a),
+                      fillColor: const Color(0xFF252c4a),
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       elevation: 0.0,
                       child: Text(

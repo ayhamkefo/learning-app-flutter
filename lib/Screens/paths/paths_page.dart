@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../api/ApiServic.dart';
 import '../../models/paths.dart';
-import '../../widgets/customAppBar.dart';
-import 'pathPage.dart';
+import '../../widgets/custom_app_bar.dart';
+import 'path_page.dart';
 
 class PathsPage extends StatefulWidget {
   const PathsPage({super.key});

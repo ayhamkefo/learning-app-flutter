@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learning_app/models/paths.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../api/ApiServic.dart';
-import '../../widgets/customAppBar.dart';
+import '../../widgets/custom_app_bar.dart';
 
 class PathPage extends StatefulWidget {
   final int pathId;
@@ -10,6 +10,7 @@ class PathPage extends StatefulWidget {
   const PathPage({super.key, required this.pathId});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PathPageState createState() => _PathPageState();
 }
 

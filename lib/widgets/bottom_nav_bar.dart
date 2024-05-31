@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
-import '../Screens/home/homePage.dart';
-import '../profilePage.dart';
+
+import '../Screens/home/home_page.dart';
+import '../Screens/profile_page.dart';
 import '../Screens/settings/setting_page.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -27,7 +27,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8.0,
             spreadRadius: 2.0,
-            offset: Offset(0, -2),
+            offset: const Offset(0, -2),
           ),
         ],
         borderRadius: const BorderRadius.only(
@@ -62,10 +62,10 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 MaterialPageRoute(builder: (context) => const HomePage()));
           } else if (index == 1) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const Profile()));
+                MaterialPageRoute(builder: (context) => const ProfilePage()));
           } else if (index == 2) {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const Settings()));
+                MaterialPageRoute(builder: (context) => const SettingsPage()));
           }
         },
       ),

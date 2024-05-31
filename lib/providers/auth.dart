@@ -16,12 +16,14 @@ class Auth extends ChangeNotifier {
   String? get errorMessge => _errorMessage;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+  final String _baseUrl = 'http://127.0.0.1:8000/api/auth';
+
   void resetErrorMessage() {
     _errorMessage = null;
   }
 
   Future register({name, email, password}) async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/auth/register');
+    var url = Uri.parse('$_baseUrl/register');
     try {
       var response = await http.post(url, body: {
         'name': '$name',
@@ -49,7 +51,7 @@ class Auth extends ChangeNotifier {
   }
 
   Future login({email, password}) async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/auth/login');
+    var url = Uri.parse('$_baseUrl/login');
     try {
       var response = await http.post(url, body: {
         'email': '$email',
@@ -75,7 +77,7 @@ class Auth extends ChangeNotifier {
   Future logout() async {
     _isLoading = true;
     notifyListeners();
-    var url = Uri.parse('http://127.0.0.1:8000/api/auth/logout');
+    var url = Uri.parse('$_baseUrl/logout');
     String token = await getToken();
     _authenticated = false;
     await http.delete(url, headers: {
@@ -89,7 +91,7 @@ class Auth extends ChangeNotifier {
   Future attempt(String? token) async {
     _isLoading = true;
     notifyListeners();
-    var url = Uri.parse('http://127.0.0.1:8000/api/auth/user');
+    var url = Uri.parse('$_baseUrl/user');
     try {
       var response =
           await http.get(url, headers: {'Authorization': 'Bearer $token'});
